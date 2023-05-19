@@ -10,7 +10,15 @@ img {
 body {
   background-image: url(/assets/489.jpg);
 }
+header{
+  display:flex;
+}
 
+.logo-img{
+  display:flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
 button {
   margin-left: 10px;
 }
