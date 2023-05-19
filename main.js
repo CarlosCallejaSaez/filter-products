@@ -122,9 +122,9 @@ const cleanButtonHTML = document.createElement("button");
 cleanButtonHTML.innerText = "Limpiar";
 document.querySelector("aside").append(cleanButtonHTML);
 
-products.forEach((product) => {
-  const collection = document.querySelector(".products");
+//Render function
 
+const render = (collection, product) => {
   collection.innerHTML += `<div class="container page-wrapper">
   <div class="page-inner">
     <div class="row">
@@ -156,6 +156,11 @@ products.forEach((product) => {
     </div>
   </div>
 </div>`;
+};
+
+products.forEach((product) => {
+  const collection = document.querySelector(".products");
+  render(collection, product);
 });
 
 // FILTRADO POR VENDEDOR
@@ -170,74 +175,10 @@ selectHTML.addEventListener("change", (event) => {
   );
 
   filteredProductBySeller.forEach((product) => {
-    console.log(filteredProductBySeller);
-
     const collection = document.querySelector(".filter");
-
-    collection.innerHTML += `<div class="container page-wrapper">
-  <div class="page-inner">
-    <div class="row">
-      <div class="el-wrapper">
-        <div class="box-up">
-          <img class="img" src="${product.image}" alt="">
-          <div class="img-info">
-            <div class="info-inner">
-              <span class="p-name">${product.name}</span>
-              <span class="p-company">${product.seller}</span>
-            </div>
-            <div class="a-size">Tallas Disponibles : <span class="size">S , M , L , XL</span></div>
-          </div>
-        </div>
-
-        <div class="box-down">
-          <div class="h-bg">
-            <div class="h-bg-inner"></div>
-          </div>
-
-          <a class="cart" href="#">
-            <span class="price">${product.price}€</span>
-            <span class="add-to-cart">
-              <span class="txt">Añadir a la cesta</span>
-            </span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>`;
+    render(collection, product);
   });
 });
-
-// FILTRADO POR PRECIO
-
-// let filteredProductByPrice= [];
-// inputHTML.addEventListener("input", (event)=>{
-//   document.querySelector(".products").classList.add("disabled")
-//   document.querySelector(".filter").classList.remove("disabled")
-
-//   document.querySelector(".article").remove;
-
-//  filteredProductByPrice= products.filter(product => product.price===Number((event.target.value)))
-
-//  filteredProductByPrice.forEach(product => {
-
-//   console.log(filteredProductByPrice)
-
-//   const articleHTML = document.createElement("article");
-//   articleHTML.classList.add("article");
-//   articleHTML.innerHTML = `<h3> ${product.name}</h3>
-//   <h4>Precio: ${product.price} </h4>
-//   <h5>Valoración: ${product.stars}</h5>
-//   <img src="${product.image}"/>`;
-
-//   const collection = document.querySelector(".filter");
-
-// collection.appendChild(articleHTML)
-
-//  }
-//  )
-//  ;
-// });
 
 // FILTRADO POR PRECIO
 buttonHTML.addEventListener("click", filtrarArticulos);
@@ -256,81 +197,16 @@ function filtrarArticulos() {
 
   articulosFiltrados.forEach((product) => {
     const collection = document.querySelector(".filter");
-
-    collection.innerHTML += `<div class="container page-wrapper">
-     <div class="page-inner">
-       <div class="row">
-         <div class="el-wrapper">
-           <div class="box-up">
-             <img class="img" src="${product.image}" alt="">
-             <div class="img-info">
-               <div class="info-inner">
-                 <span class="p-name">${product.name}</span>
-                 <span class="p-company">${product.seller}</span>
-               </div>
-               <div class="a-size">Tallas Disponibles : <span class="size">S , M , L , XL</span></div>
-             </div>
-           </div>
-   
-           <div class="box-down">
-             <div class="h-bg">
-               <div class="h-bg-inner"></div>
-             </div>
-   
-             <a class="cart" href="#">
-               <span class="price">${product.price}€</span>
-               <span class="add-to-cart">
-                 <span class="txt">Añadir a la cesta</span>
-               </span>
-             </a>
-           </div>
-         </div>
-       </div>
-     </div>
-   </div>`;
+    render(collection, product);
   });
 }
 
-/// TODO:REPASAR EL FILTRADO POR PRECIO PARA QUE FUNCIONE CON EL BOTON
-
 cleanButtonHTML.addEventListener("click", (event) => {
-  // document.querySelector(".filter").classList.add("disabled")
-  //document.querySelector(".products").classList.remove("disabled")
   document.querySelector(".filter").innerHTML = "";
   document.querySelector(".products").innerHTML = "";
   products.forEach((product) => {
     const collection = document.querySelector(".products");
 
-    collection.innerHTML += `<div class="container page-wrapper">
-  <div class="page-inner">
-    <div class="row">
-      <div class="el-wrapper">
-        <div class="box-up">
-          <img class="img" src="${product.image}" alt="">
-          <div class="img-info">
-            <div class="info-inner">
-              <span class="p-name">${product.name}</span>
-              <span class="p-company">${product.seller}</span>
-            </div>
-            <div class="a-size">Tallas Disponibles : <span class="size">S , M , L , XL</span></div>
-          </div>
-        </div>
-
-        <div class="box-down">
-          <div class="h-bg">
-            <div class="h-bg-inner"></div>
-          </div>
-
-          <a class="cart" href="#">
-            <span class="price">${product.price}€</span>
-            <span class="add-to-cart">
-              <span class="txt">Añadir a la cesta</span>
-            </span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>`;
+    render(collection, product);
   });
 });
