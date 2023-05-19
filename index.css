@@ -14,11 +14,7 @@ header{
   display:flex;
 }
 
-.logo-img{
-  display:flex;
-  flex-wrap: wrap;
-  width: 100%;
-}
+
 button {
   margin-left: 10px;
 }
@@ -104,6 +100,11 @@ body {
 }
 
 @media (max-width: 767px) {
+  .logo-img{
+    display:flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
   .el-wrapper {
     width: 290px;
     margin: 30px auto;
